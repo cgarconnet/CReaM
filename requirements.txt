@@ -10,6 +10,7 @@ django-geoposition==0.2.2
 django-sitegate==0.10.2
 django-storages==1.1.8
 django-toolbelt==0.0.1
+django-widget-tweaks==1.4.1
 gunicorn==19.3.0
 heroku==0.1.4
 Pillow==3.0.0
