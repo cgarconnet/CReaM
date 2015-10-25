@@ -10,7 +10,7 @@ import uuid
 
 # Create your models here.
 
-EVENT_TYPE = (
+EVENT_KIND = (
 	(0, 'Facebook'),
 	(1, 'Twitter'),
 	(2, 'Instagram'),
@@ -31,7 +31,7 @@ CUSTOMER_STATUS = (
 	)
 
 
-CUSTOMER_TYPE = (
+CUSTOMER_KIND = (
 	(0, 'Customer'),
 	(1, 'Partner'),
 	(2, 'Host'),
@@ -51,14 +51,15 @@ class Business(models.Model):
  	name = models.CharField(max_length=100, null=True, blank=True)
 
  	def __unicode__(self):
- 		return str(self.user) + ' / ' + str(self.name)
+ 		# return str(self.user) + ' / ' + str(self.name)
+ 		return str(self.name)
 
  	
 class Customer(models.Model):
 	user = models.ForeignKey(User)
-	bus_c = models.ForeignKey(Business) # could we make it multiple values
+	business = models.ForeignKey(Business) # could we make it multiple values
 
-	type_c = models.IntegerField(choices=CUSTOMER_TYPE, null=True, blank=True)
+	kind = models.IntegerField(choices=CUSTOMER_KIND, null=True, blank=True)
 	status = models.IntegerField(choices=CUSTOMER_STATUS, null=True, blank=True)
 
 	fullname = models.CharField(max_length=100, null=True, blank=True)
@@ -71,9 +72,10 @@ class Customer(models.Model):
 
  	created_at = models.DateTimeField(auto_now_add=True)
 
+
  	# Code below allow us to define the title of the object in the Admin section
  	def __unicode__(self):
- 		return str(self.user) + ' - ' + str(self.bus_c) + ' - ' + str(self.fullname)
+ 		return str(self.fullname) #+ ' - ' + str(self.bus_c) + ' - ' + str(self.fullname)
  		
  # 	def get_absolute_url(self):
  # 		# return "location/"+str(self.id)+"/detail" # not the best way to do it
@@ -97,15 +99,19 @@ class Event(models.Model):
 # il appartient à un client d'un user pour un Business
 	user = models.ForeignKey(User)
 	customer = models.ForeignKey(Customer)
-	bus_e = models.ForeignKey(Business)
+	business = models.ForeignKey(Business)
 
-	type_e = models.IntegerField(choices=EVENT_TYPE, null=True, blank=True)
+	kind = models.IntegerField(choices=EVENT_KIND, null=True, blank=True)
  	description = models.TextField(null=True, blank=True)
 
  	created_at = models.DateTimeField(auto_now_add=True)
  
   	# def __unicode__(self):
  		# return str(self.user) + ' / ' + self.created_at.strftime("%B %d, %Y") + ' / ' + str(self.rating)
+
+ 	# def __init__(self, *args, **kwargs):
+		# super(EventCreateView, self).__init__(self, *args, **kwargs)
+		# self.fields['bus_e'].queryset = Business.objects.filter(user=self.request.user)
 
  	def get_absolute_url(self):
  		# return "location/"+str(self.id)+"/detail" # not the best way to do it

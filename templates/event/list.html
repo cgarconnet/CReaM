@@ -18,12 +18,12 @@
 		-->
 		<div class="row">
 	 		<div class="col-md-12">
-			<h3><a href="{{ event.get_absolute_url }}">{{ event.bus_e }}</a></h3>
+			<h3><a href="{{ event.get_absolute_url }}">{{ event.business }}</a></h3>
 			</div>
 			<div class="col-md-12">
 
 			{{ event.user }}<br>
-			{{ event.created_at }} - {{ event.type_e }} / {{ event.customer }} / {{ event.bus_e }}
+			{{ event.created_at }} - {{ event.kind }} / {{ event.customer }} / {{ event.business }}
 
 			<p>{{ event.description }}</p>
 
