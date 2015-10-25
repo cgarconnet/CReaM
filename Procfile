@@ -1,1 +1,1 @@
-web: gunicorn jobup.wsgi --log-file -
+web: gunicorn cream.wsgi --log-file -
