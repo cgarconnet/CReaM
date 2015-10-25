@@ -41,11 +41,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    # 'widget_tweaks', # for managing the forms easier
-    # 'sitegate', # to enable the sign-in
-    # 'bootstrap3', # required by sitegate
-    # 'geoposition', # for google maps
-    # 'bootstrap_pagination', # for the pagination of our list    
+    'widget_tweaks', # for managing the forms easier
+    'sitegate', # to enable the sign-in
+    'bootstrap3', # required by sitegate
+    'geoposition', # for google maps
+    'bootstrap_pagination', # for the pagination of our list    
 )
 
 MIDDLEWARE_CLASSES = (
@@ -129,6 +129,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/static/' # Pour le deploiement sur Heroku
+
+LOGIN_URL = '/entrance'
 
 STATICFILES_DIRS = (
     os.path.join(MAIN_DIR, 'static'),

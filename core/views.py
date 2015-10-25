@@ -10,12 +10,15 @@ from django.views.generic.list import ListView # to list my object from database
 from django.views.generic.detail import DetailView # to show details of my selected object from database
 from django.views.generic.edit import CreateView, UpdateView # to enable the edit form (create and then edit)
 
+from sitegate.decorators import redirect_signedin, sitegate_view # for sitegate and authenficiation
+
+
 import core.models as coremodels # we import our models
 	
 # Create your views here.
 
 class LandingView(TemplateView):
-		template_name = "base/index.html"
+		template_name = "base/theme.html"
 
 
 class EventListView(ListView):
@@ -28,18 +31,6 @@ class EventListView(ListView):
 		# return the review object for the current user and the current location
 		return coremodels.Event.objects.filter(user=self.request.user)
 
-	# def get_context_data(self, **kwargs):
-	# 	# the reverse as form_valid. Modify data between extract from DB -> page
-	# 	context = super(EventListView, self).get_context_data(**kwargs)
-	# 	# location = coremodels.Location.objects.get(id=self.kwargs['pk'])
-
-	# 	if self.request.user.is_authenticated():
-	# 		user_reviews = coremodels.Event.objects.filter(user=self.request.user)
-	# 		# if user_reviews.count() > 0:
-	# 		# 	context['user_review'] = user_reviews[0]
-	# 		# else:
-	# 		# 	context['user_review'] = None
-	# 	return context
 
 class EventDetailView(DetailView):
 	# this is a template view that will show list
@@ -47,3 +38,8 @@ class EventDetailView(DetailView):
 		template_name = "event/detail.html"
 		context_object_name = 'event'
 
+# code for site authentification
+# only specific here is the name of entrance page
+@sitegate_view(widget_attrs={'class': 'form-control', 'placeholder': lambda f: f.label}, template='form_bootstrap3') # This also prevents logged in users from accessing our sign in/sign up page.
+def entrance(request):
+	return render(request, 'base/entrance.html', {'title': 'Sign in & Sign up'})
