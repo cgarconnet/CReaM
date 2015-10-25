@@ -4,14 +4,11 @@ from django.conf.urls import patterns, include, url
 
 import core.views as coreviews
 
-# urlpatterns = patterns('',
-
-# 	# url(r'^$', coreviews.LandingView.as_view()),
-# 	url(r'^$', coreviews.LandingView,
-
-# )
 
 urlpatterns = patterns('',
 
 	url(r'^$', coreviews.LandingView.as_view()),
+	url(r'event/$', coreviews.EventListView.as_view()),
+	url(r'event/(?P<pk>\d+)/detail/$', coreviews.EventDetailView.as_view(), name = 'event_list'),
+
 )

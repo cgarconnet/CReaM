@@ -17,8 +17,7 @@ EVENT_TYPE = (
 	(3, 'Email'),
 	(4, 'Soirée'),
 	(5, 'Téléphone'),
-	(6, 'Soirée'),
-	(7, 'RDV'),
+	(6, 'RDV'),
 	)
 
 
@@ -73,8 +72,8 @@ class Customer(models.Model):
  	created_at = models.DateTimeField(auto_now_add=True)
 
  	# Code below allow us to define the title of the object in the Admin section
- 	# def __unicode__(self):
- 	# 	return str(self.user) + ' / ' + str(self.name)
+ 	def __unicode__(self):
+ 		return str(self.user) + ' - ' + str(self.bus_c) + ' - ' + str(self.fullname)
  		
  # 	def get_absolute_url(self):
  # 		# return "location/"+str(self.id)+"/detail" # not the best way to do it
@@ -107,4 +106,10 @@ class Event(models.Model):
  
   	# def __unicode__(self):
  		# return str(self.user) + ' / ' + self.created_at.strftime("%B %d, %Y") + ' / ' + str(self.rating)
+
+ 	def get_absolute_url(self):
+ 		# return "location/"+str(self.id)+"/detail" # not the best way to do it
+ 		# instead use the core.urlresolvers
+ 		return reverse (viewname="event_list", args=[self.id])
+
 
