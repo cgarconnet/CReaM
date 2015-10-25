@@ -1,0 +1,110 @@
+# -*- coding: utf-8 -*-
+from django.db import models
+from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+from django.db.models import Avg
+from geoposition.fields import GeopositionField # adding maps to backends
+
+import os
+import uuid
+
+# Create your models here.
+
+EVENT_TYPE = (
+	(0, 'Facebook'),
+	(1, 'Twitter'),
+	(2, 'Instagram'),
+	(3, 'Email'),
+	(4, 'Soirée'),
+	(5, 'Téléphone'),
+	(6, 'Soirée'),
+	(7, 'RDV'),
+	)
+
+
+CUSTOMER_STATUS = (
+	(0, 'Prospect - New'),
+	(1, 'Prospect - Cold'),
+	(2, 'Prospect - Hot'),
+	(3, 'Active'),
+	(4, 'Active - cold'),
+	(5, 'Active - Hot'),
+	)
+
+
+CUSTOMER_TYPE = (
+	(0, 'Customer'),
+	(1, 'Partner'),
+	(2, 'Host'),
+	)
+
+# Fonction from Django teacher to upload on Amazon with a new random name
+# def upload_to_location(instance, filename):
+#     blocks = filename.split('.')
+#     ext = blocks[-1]
+#     filename = "%s.%s" % (uuid.uuid4(), ext)
+#     instance.title = blocks[0]
+#     return os.path.join('uploads/', filename)
+
+class Business(models.Model):
+# il appartient à un user
+	user = models.ForeignKey(User)
+ 	name = models.CharField(max_length=100, null=True, blank=True)
+
+ 	def __unicode__(self):
+ 		return str(self.user) + ' / ' + str(self.name)
+
+ 	
+class Customer(models.Model):
+	user = models.ForeignKey(User)
+	bus_c = models.ForeignKey(Business) # could we make it multiple values
+
+	type_c = models.IntegerField(choices=CUSTOMER_TYPE, null=True, blank=True)
+	status = models.IntegerField(choices=CUSTOMER_STATUS, null=True, blank=True)
+
+	fullname = models.CharField(max_length=100, null=True, blank=True)
+	telephone = models.CharField(max_length=20, null=True, blank=True)
+	email = models.CharField(max_length=100, null=True, blank=True)
+
+	# position = GeopositionField(null=True, blank=True)
+
+ 	# image_file = models.ImageField(upload_to=upload_to_location, null=True, blank=True)
+
+ 	created_at = models.DateTimeField(auto_now_add=True)
+
+ 	# Code below allow us to define the title of the object in the Admin section
+ 	# def __unicode__(self):
+ 	# 	return str(self.user) + ' / ' + str(self.name)
+ 		
+ # 	def get_absolute_url(self):
+ # 		# return "location/"+str(self.id)+"/detail" # not the best way to do it
+ # 		# instead use the core.urlresolvers
+ # 		return reverse (viewname="location_list", args=[self.id])
+
+ # 	def get_average_rating(self):
+ # 		# django create a review_set if you have a Review class
+ # 			average = self.review_set.all().aggregate(Avg('rating'))['rating__avg']
+ # 			if average == None:
+ # 				return average
+	# 		else:
+	# 			return int(average)
+
+	# def get_reviews(self):
+	# 	return self.review_set.all()
+	# 	# this will return a list of reviews
+
+
+class Event(models.Model):
+# il appartient à un client d'un user pour un Business
+	user = models.ForeignKey(User)
+	customer = models.ForeignKey(Customer)
+	bus_e = models.ForeignKey(Business)
+
+	type_e = models.IntegerField(choices=EVENT_TYPE, null=True, blank=True)
+ 	description = models.TextField(null=True, blank=True)
+
+ 	created_at = models.DateTimeField(auto_now_add=True)
+ 
+  	# def __unicode__(self):
+ 		# return str(self.user) + ' / ' + self.created_at.strftime("%B %d, %Y") + ' / ' + str(self.rating)
+
