@@ -130,6 +130,6 @@ class Event(models.Model):
  	def get_absolute_url(self):
  		# return "location/"+str(self.id)+"/detail" # not the best way to do it
  		# instead use the core.urlresolvers
- 		return reverse (viewname="event_list", args=[self.id])
+ 		return reverse (viewname="business_list")
 
 
