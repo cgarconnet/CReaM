@@ -54,6 +54,10 @@ class Business(models.Model):
  		# return str(self.user) + ' / ' + str(self.name)
  		return str(self.name)
 
+ 	def create_event_url(self):
+ 		# return "location/"+str(self.id)+"/detail" # not the best way to do it
+ 		# instead use the core.urlresolvers
+ 		return reverse (viewname="event_create", args=[self.id])
  	
 class Customer(models.Model):
 	user = models.ForeignKey(User)

@@ -17,17 +17,21 @@
 		commented to remove the box around this zone
 		-->
 		<div class="row">
-	 		<div class="col-md-12">
+	 		<div class="col-md-2">
 			<h3><a href="{{ event.get_absolute_url }}">{{ event.business }}</a></h3>
 			</div>
+	 		<div class="col-md-4">
+			<h3>{{ event.customer }}</h3>
+			</div>
+	 		<div class="col-md-6">
+			Le {{ event.created_at }} par {{ event.get_kind_display }}
+			</div>
 			<div class="col-md-12">
-
-			{{ event.user }}<br>
-			{{ event.created_at }} - {{ event.kind }} / {{ event.customer }} / {{ event.business }}
+			<br>
 
 			<p>{{ event.description }}</p>
 
-			</div>
+			<hr></div>
 		</div>
 		{% endfor %}
 	</div>

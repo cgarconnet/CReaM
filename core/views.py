@@ -76,6 +76,41 @@ class EventCreateView(CreateView):
 	# 	return self.object.Event.get_absolute_url()
 
 
+class EventCreateView2(CreateView):
+	form_class = forms.EventCreateForm2
+#	model = coremodels.Event # by just changing the model here, I can have access to the right form edit template
+	template_name = 'base/form.html'
+	# # fields ="__all__" this is when we want all fields, but in this case, we don't want the user nor the Location Id
+	# fields = ['customer', 'bus_e', 'type_e', 'description']
+
+
+	def get_form_kwargs(self):
+		kwargs = super(EventCreateView2, self).get_form_kwargs()
+		kwargs['user'] = self.request.user
+		kwargs['current_business'] = self.kwargs['pk']
+		return kwargs
+
+
+	def form_valid(self, form):
+	# this feature is used between submission of the user and sending these data to the database
+		form.instance.user = self.request.user
+		form.instance.business = coremodels.Business.objects.get(id=self.kwargs['pk'])
+		return super(EventCreateView2, self).form_valid(form)
+
+
+
+
+class BusinessListView(ListView):
+	# this is a template view that will show list
+	model = coremodels.Business
+	template_name = "business/list.html"
+#	context_object_name = 'business'
+
+	def get_queryset(self):
+		# return the review object for the current user and the current location
+		return coremodels.Business.objects.filter(user=self.request.user)
+
+
 # code for site authentification
 # only specific here is the name of entrance page
 @sitegate_view(widget_attrs={'class': 'form-control', 'placeholder': lambda f: f.label}, template='form_bootstrap3') # This also prevents logged in users from accessing our sign in/sign up page.
