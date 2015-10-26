@@ -15,6 +15,9 @@ urlpatterns = patterns('',
 
 	url(r'business/$', login_required(coreviews.BusinessListView.as_view())),
 
+	url(r'customer/(?P<pk>\d+)/$', login_required(coreviews.CustomerListView.as_view()), name = 'customer_list'),
+	url(r'customer/(?P<pk>\d+)/create/$', login_required(coreviews.CustomerCreateView.as_view()), name = 'customer_create'),
+
 	# Registering the entrance login page
 	url(r'entrance/$', coreviews.entrance),
 

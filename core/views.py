@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -98,6 +99,40 @@ class EventCreateView2(CreateView):
 		return super(EventCreateView2, self).form_valid(form)
 
 
+class CustomerListView(ListView):
+	# this is a template view that will show list
+	model = coremodels.Customer
+	template_name = "customer/list.html"
+#	context_object_name = 'business'
+
+	def get_queryset(self):
+		# return the review object for the current user and the current location
+		return coremodels.Customer.objects.filter(user=self.request.user,business=self.kwargs['pk'])
+
+
+class CustomerCreateView(CreateView):
+#	form_class = forms.EventCreateForm2
+	model = coremodels.Customer # by just changing the model here, I can have access to the right form edit template
+	template_name = 'base/form.html'
+	# # fields ="__all__" this is when we want all fields, but in this case, we don't want the user nor the Location Id
+	fields = ['kind', 'status', 'fullname', 'telephone', 'email']
+	context_object_name = 'customer'
+
+	# def get_form_kwargs(self):
+	# 	kwargs = super(CustomerCreateView, self).get_form_kwargs()
+	# 	kwargs['user'] = self.request.user
+	# 	kwargs['current_business'] = self.kwargs['pk']
+	# 	return kwargs
+
+
+	def form_valid(self, form):
+	# this feature is used between submission of the user and sending these data to the database
+		form.instance.user = self.request.user
+		form.instance.business = coremodels.Business.objects.get(id=self.kwargs['pk'])
+		return super(CustomerCreateView, self).form_valid(form)
+
+	# def get_success_url(self): # returning the url of what we just edited
+	# 	return self.object.customer.get_absolute_url()
 
 
 class BusinessListView(ListView):

@@ -10,15 +10,17 @@
 	<div class="col-md-2"></div>
 
 	<div class="col-md-8">
-	<h2>Your Businesses</h2>
+	<h2>Your Customers</h2>
 
-		{% for business in object_list %}
+Put the variable of the Business selected on screen before<p>
+
+		{% for customer in object_list %}
 		<!-- 		<div class='panel'> 
 		commented to remove the box around this zone
 		-->
 		<div class="row">
 	 		<div class="col-md-12">
-			<h3>{{ business.name }}</h3><a href="{{ business.create_event_url }}">create an event</a> / <a href="{{ business.create_customer_url }}">create a customer</a> / <a href="{{ business.list_customer_url }}">see all customers</a>
+			<h3>{{ customer.id }} - {{ customer.fullname }}</h3>
 			<hr></div>
 		</div>
 		{% endfor %}

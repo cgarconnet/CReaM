@@ -58,6 +58,16 @@ class Business(models.Model):
  		# return "location/"+str(self.id)+"/detail" # not the best way to do it
  		# instead use the core.urlresolvers
  		return reverse (viewname="event_create", args=[self.id])
+
+ 	def create_customer_url(self):
+ 		# return "location/"+str(self.id)+"/detail" # not the best way to do it
+ 		# instead use the core.urlresolvers
+ 		return reverse (viewname="customer_create", args=[self.id])
+
+ 	def list_customer_url(self):
+ 		# return "location/"+str(self.id)+"/detail" # not the best way to do it
+ 		# instead use the core.urlresolvers
+ 		return reverse (viewname="customer_list", args=[self.id])
  	
 class Customer(models.Model):
 	user = models.ForeignKey(User)
@@ -81,10 +91,10 @@ class Customer(models.Model):
  	def __unicode__(self):
  		return str(self.fullname) #+ ' - ' + str(self.bus_c) + ' - ' + str(self.fullname)
  		
- # 	def get_absolute_url(self):
- # 		# return "location/"+str(self.id)+"/detail" # not the best way to do it
- # 		# instead use the core.urlresolvers
- # 		return reverse (viewname="location_list", args=[self.id])
+ 	def get_absolute_url(self):
+ 	# 	# return "location/"+str(self.id)+"/detail" # not the best way to do it
+ 	# 	# instead use the core.urlresolvers
+ 	 	return reverse (viewname="customer_list", args=[self.id])
 
  # 	def get_average_rating(self):
  # 		# django create a review_set if you have a Review class
