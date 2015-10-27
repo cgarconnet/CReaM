@@ -36,6 +36,19 @@ class EventListView(ListView):
 		return coremodels.Event.objects.filter(user=self.request.user).order_by('-created_at')
 
 
+class BusinessEventListView(ListView):
+	# this is a template view that will show list
+	model = coremodels.Event
+	template_name = "event/list.html"
+	context_object_name = 'event'
+	paginate_by = 4 # definition of max py page
+
+	def get_queryset(self):
+		# return the review object for the current user and the current location
+		return coremodels.Event.objects.filter(user=self.request.user, business=self.kwargs['pk']).order_by('-created_at')
+
+
+
 class EventDetailView(DetailView):
 	# this is a template view that will show list
 		model = coremodels.Event

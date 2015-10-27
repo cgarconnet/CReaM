@@ -69,7 +69,14 @@ class Business(models.Model):
  		# return "location/"+str(self.id)+"/detail" # not the best way to do it
  		# instead use the core.urlresolvers
  		return reverse (viewname="customer_list", args=[self.id])
- 	
+ 
+ 	def list_event_url(self):
+ 		# return "location/"+str(self.id)+"/detail" # not the best way to do it
+ 		# instead use the core.urlresolvers
+ 		return reverse (viewname="business_event_list", args=[self.id])
+ 
+ 
+
 class Customer(models.Model):
 	user = models.ForeignKey(User)
 	business = models.ForeignKey(Business) # could we make it multiple values
