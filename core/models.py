@@ -53,7 +53,7 @@ class Business(models.Model):
 
  	def __unicode__(self):
  		# return str(self.user) + ' / ' + str(self.name)
- 		return str(self.name)
+ 		return self.name
 
  	def create_event_url(self):
  		# return "location/"+str(self.id)+"/detail" # not the best way to do it
@@ -90,7 +90,7 @@ class Customer(models.Model):
 
  	# Code below allow us to define the title of the object in the Admin section
  	def __unicode__(self):
- 		return str(self.fullname) #+ ' - ' + str(self.bus_c) + ' - ' + str(self.fullname)
+ 		return self.fullname #+ ' - ' + str(self.bus_c) + ' - ' + str(self.fullname)
  		
  	def get_absolute_url(self):
  	# 	# return "location/"+str(self.id)+"/detail" # not the best way to do it
