@@ -28,6 +28,7 @@ class EventListView(ListView):
 	model = coremodels.Event
 	template_name = "event/list.html"
 	context_object_name = 'event'
+	paginate_by = 4 # definition of max py page
 
 	def get_queryset(self):
 		# return the review object for the current user and the current location
