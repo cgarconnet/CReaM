@@ -1,3 +1,4 @@
+# coding: utf8
 from django.forms import ModelForm
 
 import core.models as coremodels # we import our models
