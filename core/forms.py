@@ -3,7 +3,7 @@ from django.forms import ModelForm
 import core.models as coremodels # we import our models
 
 
-class EventCreateForm2(ModelForm):
+class EventCreateForm(ModelForm):
 
 	class Meta:
 		model = coremodels.Event
@@ -13,7 +13,7 @@ class EventCreateForm2(ModelForm):
 		self.request = kwargs.pop('request', None)
 		current_user = kwargs.pop('user')
 #		current_business = kwargs['pk']
-		super(EventCreateForm2, self).__init__(*args, **kwargs)
+		super(EventCreateForm, self).__init__(*args, **kwargs)
 		#self.fields['customer'].queryset = 
 		self.fields['customer'].queryset = coremodels.Customer.objects.filter(user=current_user,business=current_business)
 #		self.fields['customer'].queryset = coremodels.Customer.objects.filter(user=current_user)

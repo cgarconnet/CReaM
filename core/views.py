@@ -42,8 +42,8 @@ class EventDetailView(DetailView):
 		context_object_name = 'event'
 
 
-class EventCreateView2(CreateView):
-	form_class = forms.EventCreateForm2
+class EventCreateView(CreateView):
+	form_class = forms.EventCreateForm
 #	model = coremodels.Event # by just changing the model here, I can have access to the right form edit template
 	template_name = 'base/form.html'
 	# # fields ="__all__" this is when we want all fields, but in this case, we don't want the user nor the Location Id
@@ -51,7 +51,7 @@ class EventCreateView2(CreateView):
 
 
 	def get_form_kwargs(self):
-		kwargs = super(EventCreateView2, self).get_form_kwargs()
+		kwargs = super(EventCreateView, self).get_form_kwargs()
 		kwargs['user'] = self.request.user
 		kwargs['current_business'] = self.kwargs['pk']
 		return kwargs
@@ -61,7 +61,7 @@ class EventCreateView2(CreateView):
 	# this feature is used between submission of the user and sending these data to the database
 		form.instance.user = self.request.user
 		form.instance.business = coremodels.Business.objects.get(id=self.kwargs['pk'])
-		return super(EventCreateView2, self).form_valid(form)
+		return super(EventCreateView, self).form_valid(form)
 
 
 class CustomerListView(ListView):
