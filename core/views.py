@@ -31,7 +31,7 @@ class EventListView(ListView):
 
 	def get_queryset(self):
 		# return the review object for the current user and the current location
-		return coremodels.Event.objects.filter(user=self.request.user)
+		return coremodels.Event.objects.filter(user=self.request.user).order_by('-created_at')
 
 
 class EventDetailView(DetailView):
