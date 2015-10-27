@@ -1,4 +1,5 @@
 # coding: utf8
+from __future__ import unicode_literals # pour l'encoding facon Python 3
 from django.shortcuts import render
 from django.http import HttpResponse
 
