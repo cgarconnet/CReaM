@@ -16,6 +16,7 @@ urlpatterns = patterns('',
 
 	url(r'business/(?P<pk>\d+)/events/$', login_required(coreviews.BusinessEventListView.as_view()), name = 'business_event_list'),
 	url(r'business/$', login_required(coreviews.BusinessListView.as_view()), name = 'business_list'),
+	url(r'business/create/$', login_required(coreviews.BusinessCreateView.as_view()), name = 'business_create'),
 
 
 	url(r'customer/(?P<pk>\d+)/$', login_required(coreviews.CustomerListView.as_view()), name = 'customer_list'),
