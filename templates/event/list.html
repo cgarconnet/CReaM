@@ -27,12 +27,15 @@
 	 		<div class="col-md-6">
 			Le {{ event.created_at }} par {{ event.get_kind_display }}
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-8">
 			<br>
 
 			<p>{{ event.description }}</p>
 
 			<hr></div>
+	 		<div class="col-md-4">
+	 			<a href="/event/{{ event.business_id }}/create/">Add a follow-up event</a>
+	 		</div>			
 		</div>
 		{% endfor %}
 	</div>
