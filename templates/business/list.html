@@ -12,7 +12,10 @@
 	<div class="col-md-8">
 	<h2>Your Businesses</h2>
 
-	<a href="/business/create">Add a new Business</a><p>
+<button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span><a href="/business/create">Add a new Business</a>
+</button>
+	<p>
 
 		{% for business in object_list %}
 		<!-- 		<div class='panel'> 
