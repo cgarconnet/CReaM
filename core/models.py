@@ -75,7 +75,11 @@ class Business(models.Model):
  		# instead use the core.urlresolvers
  		return reverse (viewname="business_event_list", args=[self.id])
  
- 
+  	def get_absolute_url(self):
+ 	# 	# return "location/"+str(self.id)+"/detail" # not the best way to do it
+ 	# 	# instead use the core.urlresolvers
+ 	 	return reverse (viewname="business_list")
+
 
 class Customer(models.Model):
 	user = models.ForeignKey(User)

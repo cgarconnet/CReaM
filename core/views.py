@@ -48,6 +48,18 @@ class BusinessEventListView(ListView):
 		return coremodels.Event.objects.filter(user=self.request.user, business=self.kwargs['pk']).order_by('-created_at')
 
 
+class BusinessCreateView(CreateView):
+	model = coremodels.Business
+#	model = coremodels.Event # by just changing the model here, I can have access to the right form edit template
+	template_name = 'base/form.html'
+	# # fields ="__all__" this is when we want all fields, but in this case, we don't want the user nor the Location Id
+	fields = ['name']
+
+	def form_valid(self, form):
+	# this feature is used between submission of the user and sending these data to the database
+		form.instance.user = self.request.user
+		return super(BusinessCreateView, self).form_valid(form)
+
 
 class EventDetailView(DetailView):
 	# this is a template view that will show list
