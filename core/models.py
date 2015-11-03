@@ -3,7 +3,7 @@ from __future__ import unicode_literals # pour l'encoding facon Python 3
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from django.db.models import Avg
+from django.db.models import Avg, Count
 from geoposition.fields import GeopositionField # adding maps to backends
 
 import os
@@ -116,9 +116,6 @@ class Customer(models.Model):
 	# 		else:
 	# 			return int(average)
 
-	# def get_reviews(self):
-	# 	return self.review_set.all()
-	# 	# this will return a list of reviews
 
 
 class Event(models.Model):

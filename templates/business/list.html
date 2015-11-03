@@ -12,9 +12,8 @@
 	<div class="col-md-8">
 	<h2>Your Businesses</h2>
 
-<button type="button" class="btn btn-default btn-lg">
-  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span><a href="/business/create">Add a new Business</a>
-</button>
+	<a href="/business/create" class="btn btn-primary"> Add a Business</a>
+
 	<p>
 
 		{% for business in object_list %}
@@ -23,11 +22,11 @@
 		-->
 		<div class="row">
 	 		<div class="col-md-8">
-				<h3>{{ business.name }}</h3><a href="{{ business.create_event_url }}">create an event</a> / <a href="{{ business.list_event_url }}">see all events</a> / <a href="{{ business.create_customer_url }}">create a customer</a> / <a href="{{ business.list_customer_url }}">see all customers</a>
+				<h3>{{ business.name }}</h3><a href="{{ business.create_event_url }}">create an event</a> / <a href="{{ business.list_event_url }}">see <span class="badge">{{ business.event_set.count }}</span>  events</a> / <a href="{{ business.create_customer_url }}">create a customer</a> / <a href="{{ business.list_customer_url }}">see the <span class="badge">{{ business.customer_set.count }}</span> customers </a>
 			</div>
 	 		<div class="col-md-4">
-	 			<canvas style="width: 197px; height: 197px;" class="ant" width="197" height="197" data-chart="doughnut" data-value="[{ value: 230, color: '#1ca8dd', label: 'Returning' }, { value: 130, color: '#1bc98e', label: 'New' }]" data-segment-stroke-color="#fff" data-options="{ percentageInnerCutout: '20' }">
-      </canvas>
+<!-- 	 			<canvas style="width: 197px; height: 197px;" class="ant" width="197" height="197" data-chart="doughnut" data-value="[{ value: 230, color: '#1ca8dd', label: 'Returning' }, { value: 130, color: '#1bc98e', label: 'New' }]" data-segment-stroke-color="#fff" data-options="{ percentageInnerCutout: '20' }">
+      </canvas> -->
       
 	 		</div>
 		</div>
