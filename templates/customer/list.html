@@ -19,9 +19,15 @@ Put the variable of the Business selected on screen before<p>
 		commented to remove the box around this zone
 		-->
 		<div class="row">
-	 		<div class="col-md-12">
-			<h3>{{ customer.id }} - {{ customer.fullname }}</h3>
-			<hr></div>
+	 		<div class="col-md-8">
+				<h3>{{ customer.id }} - {{ customer.fullname }}</h3>
+			</div>
+			<div class="col-md-4">
+				{{ customer.get_kind_display }} / {{ customer.get_status_display }}
+			</div>
+		</div>
+		<div class="row">
+			<hr>
 		</div>
 		{% endfor %}
 	</div>
