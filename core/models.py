@@ -34,7 +34,7 @@ CUSTOMER_STATUS = (
 
 CUSTOMER_KIND = (
 	(0, 'Customer'),
-	(1, 'Partner'),
+	(1, 'Dealer'),
 	(2, 'Host'),
 	)
 
@@ -125,9 +125,9 @@ class Event(models.Model):
 	business = models.ForeignKey(Business)
 
 	kind = models.IntegerField(choices=EVENT_KIND, null=True, blank=True)
- 	description = models.TextField(null=True, blank=True)
+	description = models.TextField(null=True, blank=True)
 
- 	created_at = models.DateTimeField(auto_now_add=True)
+	created_at = models.DateTimeField(auto_now_add=True)
  
   	# def __unicode__(self):
  		# return str(self.user) + ' / ' + self.created_at.strftime("%B %d, %Y") + ' / ' + str(self.rating)
@@ -141,4 +141,4 @@ class Event(models.Model):
  		# instead use the core.urlresolvers
  		return reverse (viewname="business_list")
 
-
+    
