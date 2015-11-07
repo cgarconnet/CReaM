@@ -149,7 +149,7 @@ def PartnerAddPoints(request, pk):
     value=request.POST.get("points")
     b=coremodels.Partner.objects.get(id=pk) #str(value))
     #delete change statement
-    b.points = b.points + 10
+    b.points = b.points + int(value) #10
     b.save()
     # resp=json.dumps(b)
 #    return HttpResponse(resp, content_type="application/json")
