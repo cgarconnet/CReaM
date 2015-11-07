@@ -7,6 +7,22 @@
 
 
 {% block content %}
+<script>
+//   	points = document.getElementById('points').value
+
+    function add_points(id)
+    {
+    	var points = $("input").val();
+        $.ajax({
+            url: "/partner/"+id+"/points/",
+            type: "POST",
+            data: {'points':points},
+            success: function(response) {
+            },
+
+        });
+    }
+</script>
 
 <div class="row main-content">
 	<div class="col-md-2"></div>
@@ -30,7 +46,7 @@
 			Right: <a href="{{ partner.right.get_absolute_url }}">{{ partner.right }}</a>
 				<form action="#" method="get">
 					<input type="text" value="5" name="points" size="1"/>
-					<input type="submit" class="btn" value="Click" name="mybtn">
+				<button type="button" class="btn btn-danger" onclick="add_points({{ partner.id }});"> Add Points </button></p>
 				</form>
 			</div>
 			<hr></div>

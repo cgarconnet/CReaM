@@ -5,8 +5,8 @@ from django.http import HttpResponse
 
 # Create your views here.
 
+from django.views.decorators.csrf import csrf_exempt
 
-from django.shortcuts import render
 from django.views.generic.base import TemplateView # to import html templates
 from django.views.generic.list import ListView # to list my object from database
 from django.views.generic.detail import DetailView # to show details of my selected object from database
@@ -143,6 +143,18 @@ class BusinessListView(ListView):
 		# return the review object for the current user and the current location
 		return coremodels.Business.objects.filter(user=self.request.user)
 
+@csrf_exempt
+def PartnerAddPoints(request, pk):
+	# source: http://stackoverflow.com/questions/25135155/how-to-change-model-variable-by-onclick-function-used-in-template-asynchronously?answertab=active#tab-top
+    value=request.POST.get("points")
+    b=coremodels.Partner.objects.get(id=pk) #str(value))
+    #delete change statement
+    b.points = b.points + int(value) #10
+    b.save()
+    # resp=json.dumps(b)
+#    return HttpResponse(resp, content_type="application/json")
+	# I should now refresh the value in the DOM
+    return HttpResponse(None, content_type="application/json")
 
 # code for site authentification
 # only specific here is the name of entrance page

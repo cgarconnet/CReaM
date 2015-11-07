@@ -19,6 +19,8 @@ urlpatterns = patterns('',
 	url(r'business/create/$', login_required(coreviews.BusinessCreateView.as_view()), name = 'business_create'),
 
 	url(r'partner/(?P<pk>\d+)/detail/$', coreviews.PartnerDetailView.as_view(), name = 'partner_detail'),
+	url(r'partner/(?P<pk>\d+)/points/$', coreviews.PartnerAddPoints, name = 'partner_points'),
+
 
 	url(r'customer/(?P<pk>\d+)/$', login_required(coreviews.CustomerListView.as_view()), name = 'customer_list'),
 	url(r'customer/(?P<pk>\d+)/create/$', login_required(coreviews.CustomerCreateView.as_view()), name = 'customer_create'),
