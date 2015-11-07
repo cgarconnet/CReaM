@@ -46,7 +46,7 @@ INSTALLED_APPS = (
     'sitegate', # to enable the sign-in
     'bootstrap3', # required by sitegate
     'geoposition', # for google maps
-    'bootstrap_pagination', # for the pagination of our list    
+    'bootstrap_pagination', # for the pagination of our list
 )
 
 MIDDLEWARE_CLASSES = (
@@ -85,6 +85,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'cream.wsgi.application'
 

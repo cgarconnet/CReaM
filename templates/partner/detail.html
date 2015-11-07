@@ -1,6 +1,7 @@
 {% extends "base/theme.html" %}
 {% load bootstrap_pagination %}
 
+
 {% block animation %}
 {% endblock %}
 
@@ -27,6 +28,10 @@
 	 		<div class="col-md-4">
 			Left: <a href="{{ partner.left.get_absolute_url }}">{{ partner.left }}</a><br>
 			Right: <a href="{{ partner.right.get_absolute_url }}">{{ partner.right }}</a>
+				<form action="#" method="get">
+					<input type="text" value="5" name="points" size="1"/>
+					<input type="submit" class="btn" value="Click" name="mybtn">
+				</form>
 			</div>
 			<hr></div>
 	</div>

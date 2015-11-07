@@ -63,16 +63,16 @@ class BusinessCreateView(CreateView):
 
 class EventDetailView(DetailView):
 	# this is a template view that will show list
-		model = coremodels.Event
-		template_name = "event/detail.html"
-		context_object_name = 'event'
+	model = coremodels.Event
+	template_name = "event/detail.html"
+	context_object_name = 'event'
 
 
 class PartnerDetailView(DetailView):
 	# this is a template view that will show list
-		model = coremodels.Partner
-		template_name = "partner/detail.html"
-		context_object_name = 'partner'
+	model = coremodels.Partner
+	template_name = "partner/detail.html"
+	context_object_name = 'partner'
 
 
 class EventCreateView(CreateView):

@@ -126,14 +126,10 @@ class Partner(models.Model):
 
  	created_at = models.DateTimeField(auto_now_add=True)
 
-# models.ForeignKey(Customer)
-
  	def __unicode__(self):
  		return self.value #+ ' - ' + str(self.bus_c) + ' - ' + str(self.fullname)
 
  	def get_absolute_url(self):
- 		# return "location/"+str(self.id)+"/detail" # not the best way to do it
- 		# instead use the core.urlresolvers
  		return reverse (viewname="partner_detail", args=[self.id])
 
 
