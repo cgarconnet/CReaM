@@ -16,11 +16,17 @@
 		<!-- 		<div class='panel'> 
 		commented to remove the box around this zone
 		-->
+		<div class="row">
 	 		<div class="col-md-2">
-			<h3>{{ partner.up }} => {{ partner.value }}</h3>
+			<h3><a href="{{ partner.up.get_absolute_url }}">{{ partner.up }}</a> => {{ partner.value }}</h3>
 			</div>
+		</div>
 	 		<div class="col-md-4">
-			{{ partner.left }} / {{ partner.right }}
+	 			Vos points: {{ partner.points }}
+	 		</div>
+	 		<div class="col-md-4">
+			Left: <a href="{{ partner.left.get_absolute_url }}">{{ partner.left }}</a><br>
+			Right: <a href="{{ partner.right.get_absolute_url }}">{{ partner.right }}</a>
 			</div>
 			<hr></div>
 	</div>

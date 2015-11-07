@@ -131,6 +131,11 @@ class Partner(models.Model):
  	def __unicode__(self):
  		return self.value #+ ' - ' + str(self.bus_c) + ' - ' + str(self.fullname)
 
+ 	def get_absolute_url(self):
+ 		# return "location/"+str(self.id)+"/detail" # not the best way to do it
+ 		# instead use the core.urlresolvers
+ 		return reverse (viewname="partner_detail", args=[self.id])
+
 
 class Event(models.Model):
 # il appartient à un client d'un user pour un Business
