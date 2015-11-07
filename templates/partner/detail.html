@@ -1,0 +1,31 @@
+{% extends "base/theme.html" %}
+{% load bootstrap_pagination %}
+
+{% block animation %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row main-content">
+	<div class="col-md-2"></div>
+
+	<div class="col-md-8">
+	<h2>Details on Partner</h2>
+
+		<!-- 		<div class='panel'> 
+		commented to remove the box around this zone
+		-->
+	 		<div class="col-md-2">
+			<h3>{{ partner.up }} => {{ partner.value }}</h3>
+			</div>
+	 		<div class="col-md-4">
+			{{ partner.left }} / {{ partner.right }}
+			</div>
+			<hr></div>
+	</div>
+	<div class="col-md-2"></div>
+</div>
+
+{% endblock %}
+

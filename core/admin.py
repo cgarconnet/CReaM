@@ -7,3 +7,4 @@ import core.models as coremodels
 admin.site.register(coremodels.Customer)
 admin.site.register(coremodels.Event)
 admin.site.register(coremodels.Business)
+admin.site.register(coremodels.Partner)

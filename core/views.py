@@ -68,6 +68,13 @@ class EventDetailView(DetailView):
 		context_object_name = 'event'
 
 
+class PartnerDetailView(DetailView):
+	# this is a template view that will show list
+		model = coremodels.Partner
+		template_name = "partner/detail.html"
+		context_object_name = 'partner'
+
+
 class EventCreateView(CreateView):
 	form_class = forms.EventCreateForm
 #	model = coremodels.Event # by just changing the model here, I can have access to the right form edit template

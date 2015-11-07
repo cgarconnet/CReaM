@@ -117,6 +117,20 @@ class Customer(models.Model):
 	# 			return int(average)
 
 
+class Partner(models.Model):
+	up = models.ForeignKey('self',related_name='up_level', null=True, blank=True) # could we make it multiple values
+	left = models.ForeignKey('self',related_name='left_level', null=True, blank=True)
+	right = models.ForeignKey('self',related_name='right_level', null=True, blank=True)
+	value = models.CharField(max_length=100, null=True, blank=True)
+	points = models.IntegerField(null=True, blank=True)
+
+ 	created_at = models.DateTimeField(auto_now_add=True)
+
+# models.ForeignKey(Customer)
+
+ 	def __unicode__(self):
+ 		return self.value #+ ' - ' + str(self.bus_c) + ' - ' + str(self.fullname)
+
 
 class Event(models.Model):
 # il appartient à un client d'un user pour un Business
