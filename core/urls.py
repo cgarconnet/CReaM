@@ -1,8 +1,11 @@
 # coding: utf8
 from __future__ import unicode_literals # pour l'encoding facon Python 3
 from django.conf.urls import patterns, include, url
-from django.contrib.auth.decorators import login_required # to block users who are not logged is so that cannot create
+from django.contrib.auth.decorators import login_required, permission_required # to block users who are not logged is so that cannot create
 # all url that we want to protect we add login_required()
+# for admin securisation we add permission_required('is_staff') before (coreviews.LocationUpdateView.as_view())
+# this prevent people from cheating the url
+
 
 import core.views as coreviews
 
