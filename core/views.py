@@ -101,7 +101,7 @@ class CustomerListView(ListView):
 	# this is a template view that will show list
 	model = coremodels.Customer
 	template_name = "customer/list.html"
-#	context_object_name = 'business'
+	context_object_name = 'customer'
 
 	def get_queryset(self):
 		# return the review object for the current user and the current location
